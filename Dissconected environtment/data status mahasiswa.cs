@@ -16,13 +16,27 @@ namespace Disconnected_Environment
     {
         private string stringConnection = "Data source = DESKTOP-794RG4I\\PRIMA06;" + "database=Act6;User ID=sa;Password=06112002";
         private SqlConnection koneksi;
+        private void refreshform()
+        {
+            cbxNama.Enabled = false;
+            cbxStatusMahasiswa.Enabled = false;
+            cbxTahunMasuk.Enabled = false;
+            cbxNama.SelectedIndex = -1;
+            cbxStatusMahasiswa.SelectedIndex = -1;
+            cbxTahunMasuk.SelectedIndex = -1;
+            txtNIM.Visible = false;
+            btnSave.Enabled = false;
+            btnClear.Enabled = false;
+            btnAdd.Enabled = true;
+        }
+
         public FormDataStatusMahasiswa()
         {
             InitializeComponent();
-            koneksi = new SqlConnection();
+            koneksi = new SqlConnection(stringConnection);
             refreshform();
-
         }
+
         private void dataGridView()
         {
             koneksi.Open();
@@ -38,8 +52,8 @@ namespace Disconnected_Environment
         {
             koneksi.Open();
             string str = "select nama_mahasiswa from dbo.Mahasiswa where " +
-                "not EXISTS(select id_status from dbo.status_mahasiswa where)" +
-                "status_mahasiswa.nim = mahasiswa.nim";
+                "not EXISTS(select id_status from dbo.status_mahasiswa where " +
+                "status_mahasiswa.nim = mahasiswa.nim)";
             SqlCommand cmd = new SqlCommand(str, koneksi);
             SqlDataAdapter da = new SqlDataAdapter(str, koneksi);
             DataSet ds = new DataSet();
@@ -57,7 +71,7 @@ namespace Disconnected_Environment
             int y = DateTime.Now.Year - 2010;
             string[] type = new string[y];
             int i = 0;
-            for (i = 0; i - 1 < type.Length; i++)
+            for (i = 0; i < type.Length; i++)
             {
                 if (i == 0)
                 {
@@ -69,6 +83,12 @@ namespace Disconnected_Environment
                     cbxTahunMasuk.Items.Add(l.ToString());
                 }
             }
+        }
+
+        private void status_Load(object sender, EventArgs e)
+        {
+        
+
         }
 
         private void cbxNama_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,17 +106,40 @@ namespace Disconnected_Environment
             }
             dr.Close();
             koneksi.Close();
+
             txtNIM.Text = nim;
         }
 
-        private void btnOpen_Click(object sender, EventArgs e)
+
+
+        private void FormDataStatusMahasiswa_FormCLosed(object sender, FormClosedEventArgs e)
         {
-            dataGridView();
-            btnOpen.Enabled = false;
+            Form1 fm = new Form1();
+            fm.Show();
+            this.Hide();
         }
 
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void txtNIM_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Form1 fm = new Form1();
+            fm.Show();
+            this.Hide();
+        }
+
+        private void FormDataStatusMahasiswa_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'act6DataSet.mahasiswa' table. You can move, or remove it, as needed.
+            this.mahasiswaTableAdapter.Fill(this.act6DataSet.mahasiswa);
+
+        }
+
+        private void btnAdd_Click_1(object sender, EventArgs e)
         {
             cbxTahunMasuk.Enabled = true;
             cbxNama.Enabled = true;
@@ -109,7 +152,12 @@ namespace Disconnected_Environment
             btnAdd.Enabled = false;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnClear_Click_1(object sender, EventArgs e)
+        {
+            refreshform();
+        }
+
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
             string nim = txtNIM.Text;
             string statusMahasiswa = cbxStatusMahasiswa.Text;
@@ -128,14 +176,14 @@ namespace Disconnected_Environment
             }
             else
             {
-                string QueryString = "select Max(id_status) from dbo.status_mahasiswa";
+                string queryStrings = "select Max(id_status) from dbo.status_mahasiswa";
                 SqlCommand cmStatusMahasiswaSum = new SqlCommand(str, koneksi);
                 int totalStatusMahasiswa = (int)cmStatusMahasiswaSum.ExecuteScalar();
                 int finalKodeStatusInt = totalStatusMahasiswa + 1;
                 kodeStatus = Convert.ToString(finalKodeStatusInt);
             }
-            string queryString = "insert into dbo.status_mahasiswa(id_status, nim, status_mahasiswa, tahun_masuk)" +
-                "values(@NIM, @sm, @tm)";
+            string queryString = "insert into dbo.status_mahasiswa (id_status, nim, " +
+                "status_mahasiswa, tahun_masuk)" + "values(@ids, @NIM, @sm, @tm)";
             SqlCommand cmd = new SqlCommand(queryString, koneksi);
             cmd.CommandType = CommandType.Text;
 
@@ -145,58 +193,21 @@ namespace Disconnected_Environment
             cmd.Parameters.Add(new SqlParameter("tm", tahunMasuk));
             cmd.ExecuteNonQuery();
             koneksi.Close();
-            MessageBox.Show("Data berhasil Disimpan", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            MessageBox.Show("Data Berhasil Disimpan", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
             refreshform();
             dataGridView();
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnOpen_Click_1(object sender, EventArgs e)
         {
-            refreshform();
+            dataGridView();
+            btnOpen.Enabled = false;
         }
 
-        private void FormDataStatusMahasiswa_FormClosed(object sender, FormClosedEventArgs e)
+        private void cbxStatusMahasiswa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Form1 fm = new Form1();
-            fm.Show();
-            this.Hide();
+
         }
-
-        private void dataProdiToolStriMenuItem_Click(object sender, EventArgs e)
-        {
-            FormDataProdi fm = new FormDataProdi();
-            fm.Show();
-            this.Hide();
-        }
-
-        private void dataMahasiswaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormMahasiswa fo = new FormMahasiswa();
-            fo.Show();
-            this.Hide();
-        }
-
-        private void dataStatusMahasiswaToolStripMenuItem_Click(Object sender, EventArgs e)
-        {
-            FormDataStatusMahasiswa fr = new FormDataStatusMahasiswa();
-            fr.Show();
-            this.Hide();
-        }
-
-        private void refreshform()
-        {
-            cbxNama.Enabled = false;
-            cbxStatusMahasiswa.Enabled = false;
-            cbxTahunMasuk.Enabled = false;
-            cbxNama.SelectedIndex = -1;
-            cbxStatusMahasiswa.SelectedIndex = -1;
-            cbxTahunMasuk.SelectedIndex = -1;
-            txtNIM.Visible = false;
-            btnSave.Enabled = false;
-            btnClear.Enabled = false;
-            btnAdd.Enabled = true;
-        }
-
-
     }
 }

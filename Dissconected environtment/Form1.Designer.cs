@@ -73,12 +73,14 @@
             this.dataMahasiswaToolStripMenuItem.Name = "dataMahasiswaToolStripMenuItem";
             this.dataMahasiswaToolStripMenuItem.Size = new System.Drawing.Size(295, 34);
             this.dataMahasiswaToolStripMenuItem.Text = "Data Mahasiswa";
+            this.dataMahasiswaToolStripMenuItem.Click += new System.EventHandler(this.dataMahasiswaToolStripMenuItem_Click_1);
             // 
             // dataStatusMahasiswaToolStripMenuItem
             // 
             this.dataStatusMahasiswaToolStripMenuItem.Name = "dataStatusMahasiswaToolStripMenuItem";
             this.dataStatusMahasiswaToolStripMenuItem.Size = new System.Drawing.Size(295, 34);
             this.dataStatusMahasiswaToolStripMenuItem.Text = "Data Status Mahasiswa";
+            this.dataStatusMahasiswaToolStripMenuItem.Click += new System.EventHandler(this.dataStatusMahasiswaToolStripMenuItem_Click_1);
             // 
             // Form1
             // 

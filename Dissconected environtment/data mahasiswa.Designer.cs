@@ -1,6 +1,6 @@
-﻿namespace Disconnected_Environment
+﻿namespace Act6_Disconnected_Environment
 {
-    partial class FormMahasiswa
+    partial class mahasiswa
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMahasiswa));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mahasiswa));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -57,6 +57,7 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.SuspendLayout();
@@ -139,6 +140,9 @@
             // cbxJenisKelamin
             // 
             this.cbxJenisKelamin.FormattingEnabled = true;
+            this.cbxJenisKelamin.Items.AddRange(new object[] {
+            "L",
+            "P"});
             this.cbxJenisKelamin.Location = new System.Drawing.Point(332, 155);
             this.cbxJenisKelamin.Name = "cbxJenisKelamin";
             this.cbxJenisKelamin.Size = new System.Drawing.Size(200, 28);
@@ -167,6 +171,7 @@
             this.btnAdd.TabIndex = 13;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnSave
             // 
@@ -176,6 +181,7 @@
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
             // btnClear
             // 
@@ -185,6 +191,7 @@
             this.btnClear.TabIndex = 15;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click_1);
             // 
             // bindingNavigator1
             // 
@@ -301,11 +308,22 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
-            // FormMahasiswa
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(578, 356);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 44);
+            this.btnBack.TabIndex = 17;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // mahasiswa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnSave);
@@ -322,8 +340,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "FormMahasiswa";
+            this.Name = "mahasiswa";
             this.Text = "data_mahasiswa";
+            this.Load += new System.EventHandler(this.mahasiswa_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
@@ -360,5 +379,6 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.Button btnBack;
     }
 }

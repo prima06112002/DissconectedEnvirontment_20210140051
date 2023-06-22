@@ -38,6 +38,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.nn = new System.Windows.Forms.TextBox();
             this.Add = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +77,7 @@
             // 
             this.btnAdd.Location = new System.Drawing.Point(519, 262);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 26);
+            this.btnAdd.Size = new System.Drawing.Size(75, 30);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -102,7 +103,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(147, 268);
+            this.label1.Location = new System.Drawing.Point(129, 316);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 20);
             this.label1.TabIndex = 6;
@@ -111,7 +112,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(147, 312);
+            this.label2.Location = new System.Drawing.Point(157, 262);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(63, 20);
             this.label2.TabIndex = 7;
@@ -134,11 +135,22 @@
             this.Add.UseVisualStyleBackColor = true;
             this.Add.Click += new System.EventHandler(this.Add_Click);
             // 
+            // btnBack
+            // 
+            this.btnBack.Location = new System.Drawing.Point(645, 287);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(75, 35);
+            this.btnBack.TabIndex = 10;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // FormDataProdi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnBack);
             this.Controls.Add(this.Add);
             this.Controls.Add(this.nn);
             this.Controls.Add(this.label2);
@@ -169,5 +181,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox nn;
         private System.Windows.Forms.Button Add;
+        private System.Windows.Forms.Button btnBack;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Disconnected_Environment;
+﻿using Act6_Disconnected_Environment;
+using Disconnected_Environment;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Dissconected_environtment
 {
@@ -18,24 +20,25 @@ namespace Dissconected_environtment
             InitializeComponent();
         }
 
-        private void dataStatusMahasiswaToolStrpMenuItem_Click(object sender, EventArgs e)
-        {
-            FormDataStatusMahasiswa fr = new FormDataStatusMahasiswa();
-            fr.Show();
-            this.Hide();
-        }
-
-        private void dataMahasiswaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormMahasiswa fo = new FormMahasiswa();
-            fo.Show();
-            this.Hide();
-        }
-
         private void dataProdiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FormDataProdi fm = new FormDataProdi();
             fm.Show();
+            this.Hide();
+        }
+
+
+        private void dataMahasiswaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            mahasiswa fo = new mahasiswa();
+            fo.Show();
+            this.Hide();
+        }
+
+        private void dataStatusMahasiswaToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            FormDataStatusMahasiswa fr = new FormDataStatusMahasiswa();
+            fr.Show();
             this.Hide();
         }
     }

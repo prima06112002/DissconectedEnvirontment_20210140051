@@ -55,43 +55,6 @@ namespace Disconnected_Environment
             dataGridView1.DataSource = ds.Tables[0];
             koneksi.Close();
         }
-
-       
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            string nmProdi = nn.Text;
-            string nmMahasiswa = nmp.Text;
-
-            if (nmProdi == "" || nmMahasiswa == "")
-            {
-                MessageBox.Show("Masukkan Keduanya", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                koneksi.Open();
-                string insertQuery = "INSERT INTO dbo.prodi (nama_prodi) VALUES (@nama_prodi);";
-                SqlCommand insertCommand = new SqlCommand(insertQuery, koneksi);
-                insertCommand.CommandType = CommandType.Text;
-                insertCommand.Parameters.Add(new SqlParameter("nama_prodi", nmMahasiswa));
-
-
-
-                string str = "insert into dbo.prodi (id_prodi) VALUES (@id_prodi)";
-                SqlCommand cmd = new SqlCommand(str, koneksi);
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.Add(new SqlParameter("id_prodi", nmProdi));
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Data Berhasil Disimpan", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dataGridView1_CellContentClick();
-                refreshform();
-            }
-
-
-        }
-
-     
-
         private void FormDataProdi_FormClosed(object sender, FormClosedEventArgs e)
         {
             Form1 hu = new Form1();
@@ -166,6 +129,13 @@ namespace Disconnected_Environment
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Form1 fm = new Form1();
+            fm.Show();
+            this.Hide();
         }
     }
 }
